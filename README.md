@@ -1,2 +1,2 @@
 # apple-summary-slides
-A collection of summary slides created Apple for WWDC and Apple Events
+A collection of the summary slides created Apple created for WWDC and Apple Events
