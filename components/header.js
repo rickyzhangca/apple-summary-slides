@@ -2,6 +2,15 @@ import React from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import Script from 'next/script';
+import {
+  HeaderContainer,
+  HeaderRightWrapper,
+  HeaderLeftWrapper,
+  Title,
+  HeaderLink,
+  HeaderMiddleWrapper,
+} from './header.styles';
+import { MarkGithubIcon } from 'octicons-extended-react/dist/index.umd';
 
 const Header = () => {
   return (
@@ -56,20 +65,25 @@ const Header = () => {
       gtag('js', new Date());
       gtag('config', '000');`}
       </Script>
-      <header>
-        <ul>
-          <li>
-            <Link href='/events-wwdc2022'>
-              <a>By events</a>
-            </Link>
-          </li>
-          <li>
-            <Link href='/products-iphone'>
-              <a>By products</a>
-            </Link>
-          </li>
-        </ul>
-      </header>
+      <HeaderContainer>
+        <HeaderLeftWrapper>
+          <Link href='/'>
+            <Title>Apple Summary Slides</Title>
+          </Link>
+        </HeaderLeftWrapper>
+        <HeaderMiddleWrapper>
+          <HeaderLink href='/events-wwdc2022'>By event</HeaderLink>
+          <HeaderLink href='/products-iphone'>By product</HeaderLink>
+        </HeaderMiddleWrapper>
+        <HeaderRightWrapper>
+          <a
+            href='https://github.com/rickyzhangca/apple-summary-slides'
+            target='_blank'
+            rel='noreferrer'>
+            <MarkGithubIcon fill='white' size={20} />
+          </a>
+        </HeaderRightWrapper>
+      </HeaderContainer>
     </>
   );
 };
