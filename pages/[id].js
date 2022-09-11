@@ -8,7 +8,8 @@ import byEvent from '../data/byEvent.json';
 import byProductType from '../data/byProductType.json';
 import assets from '../data/assets.json';
 import ChapterHeaderContainer, {
-  ChapterHeaderScrollingContainer,
+  ChaptersContainerScrollingWrapper,
+  ChaptersContainer,
   ChapterHeaderPaddleLeftContainer,
   ChapterHeaderPaddleRightContainer,
   Container,
@@ -33,16 +34,24 @@ import {
 import Link from 'next/link';
 
 const Page = () => {
-  const horizontalRef = React.useRef(null);
-  const { refXOverflowing, refXScrollBegin, refXScrollEnd } =
-    useOverflow(horizontalRef);
-  console.log(refXOverflowing);
+  const ChaptersContainerScrollingWrapperRef = React.createRef();
+  const chaptersContainerRef = React.createRef();
+  const { refXOverflowing, refXScrollBegin, refXScrollEnd } = useOverflow(
+    ChaptersContainerScrollingWrapperRef
+  );
+  const [centerChapters, setCenterChapters] = useState(false);
+
+  useEffect(() => {
+    if (chaptersContainerRef.current) {
+      setCenterChapters(
+        chaptersContainerRef.current.scrollWidth ==
+          chaptersContainerRef.current.clientWidth
+      );
+    }
+  }, [chaptersContainerRef]);
+
   console.log(refXScrollBegin);
   console.log(refXScrollEnd);
-
-  useLayoutEffect(() => {
-    console.log(horizontalRef.current.clientWidth);
-  });
 
   const router = useRouter();
   const id = router.query.id;
@@ -67,7 +76,7 @@ const Page = () => {
               {refXOverflowing && !refXScrollBegin && (
                 <ChapterHeaderPaddleLeftContainer
                   onClick={() => {
-                    horizontalRef.current.scrollBy({
+                    ChaptersContainerScrollingWrapperRef.current.scrollBy({
                       top: 0,
                       left: -500,
                       behavior: 'smooth',
@@ -79,7 +88,7 @@ const Page = () => {
               {refXOverflowing && !refXScrollEnd && (
                 <ChapterHeaderPaddleRightContainer
                   onClick={() => {
-                    horizontalRef.current.scrollBy({
+                    ChaptersContainerScrollingWrapperRef.current.scrollBy({
                       top: 0,
                       left: +500,
                       behavior: 'smooth',
@@ -88,43 +97,45 @@ const Page = () => {
                   <ChevronRightIcon size={24} />
                 </ChapterHeaderPaddleRightContainer>
               )}
-              <ChapterHeaderScrollingContainer
-                className={`chapter-header ${
-                  refXOverflowing && !refXScrollBegin && 'justify-center'
-                }`}
-                ref={horizontalRef}>
-                {events.map((event) => {
-                  const eventName = byEvent[event][0].eventName;
-                  return (
-                    <Link key={event} href={`/event-${event}`}>
-                      <ChapterContainer>
-                        <ChapterImage
-                          src={`/assets/${assets[event]}`}
-                          alt={'event'}
-                          width={112}
-                          height={72}
-                          placeholder='blur'
-                          blurDataURL={`/assets/${assets[event]}`}
-                        />
-                        {eventNamePattern.test(eventName) ? (
-                          <ChapterTextsContainer>
+              <ChaptersContainerScrollingWrapper
+                className='chapter-header'
+                ref={ChaptersContainerScrollingWrapperRef}>
+                <ChaptersContainer
+                  className={`${centerChapters && 'justify-center'}`}
+                  ref={chaptersContainerRef}>
+                  {events.map((event) => {
+                    const eventName = byEvent[event][0].eventName;
+                    return (
+                      <Link key={event} href={`/event-${event}`}>
+                        <ChapterContainer>
+                          <ChapterImage
+                            src={`/assets/${assets[event]}`}
+                            alt={'event'}
+                            width={112}
+                            height={72}
+                            placeholder='blur'
+                            blurDataURL={`/assets/${assets[event]}`}
+                          />
+                          {eventNamePattern.test(eventName) ? (
+                            <ChapterTextsContainer>
+                              <ChapterMainText>
+                                {eventName.match(eventNamePattern)[1]}
+                              </ChapterMainText>
+                              <ChapterCaptionText>
+                                {eventName.match(eventNamePattern)[2]}
+                              </ChapterCaptionText>
+                            </ChapterTextsContainer>
+                          ) : (
                             <ChapterMainText>
-                              {eventName.match(eventNamePattern)[1]}
+                              {byEvent[event][0].eventName}
                             </ChapterMainText>
-                            <ChapterCaptionText>
-                              {eventName.match(eventNamePattern)[2]}
-                            </ChapterCaptionText>
-                          </ChapterTextsContainer>
-                        ) : (
-                          <ChapterMainText>
-                            {byEvent[event][0].eventName}
-                          </ChapterMainText>
-                        )}
-                      </ChapterContainer>
-                    </Link>
-                  );
-                })}
-              </ChapterHeaderScrollingContainer>
+                          )}
+                        </ChapterContainer>
+                      </Link>
+                    );
+                  })}
+                </ChaptersContainer>
+              </ChaptersContainerScrollingWrapper>
             </ChapterHeaderContainer>
             <Container>
               <Title>{byEvent[key2][0].eventName}</Title>

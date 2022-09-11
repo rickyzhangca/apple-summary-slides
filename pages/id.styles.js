@@ -5,19 +5,21 @@ import tw from 'tailwind-styled-components';
 const ChapterHeaderContainer = tw.div`
     w-full
     relative
+    bg-gray-100
 `;
 
 export default ChapterHeaderContainer;
 
-export const ChapterHeaderScrollingContainer = tw.div`
+export const ChaptersContainer = tw.div`
     flex
     flex-row    
     gap-6
     px-12
     py-4
+`;
+
+export const ChaptersContainerScrollingWrapper = tw.div`
     overflow-x-auto
-    snap-none
-    bg-gray-100
 `;
 
 const ChapterHeaderPaddleContainer = tw.div`
