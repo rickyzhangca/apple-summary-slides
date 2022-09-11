@@ -16,6 +16,7 @@ export const HeaderRightWrapper = tw.div`
     lg:min-w-[155px]
     flex
     flex-row
+    gap-8
     justify-end
     grow
     lg:grow-0

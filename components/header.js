@@ -10,7 +10,10 @@ import {
   HeaderLink,
   HeaderMiddleWrapper,
 } from './header.styles';
-import { MarkGithubIcon } from 'octicons-extended-react/dist/index.umd';
+import {
+  FigmaIcon,
+  MarkGithubIcon,
+} from 'octicons-extended-react/dist/index.umd';
 
 const Header = () => {
   return (
@@ -83,6 +86,12 @@ const Header = () => {
             target='_blank'
             rel='noreferrer'>
             <MarkGithubIcon fill='white' size={20} />
+          </a>
+          <a
+            href='https://www.figma.com/community/file/1150817983915754582'
+            target='_blank'
+            rel='noreferrer'>
+            <FigmaIcon fill='white' size={20} />
           </a>
         </HeaderRightWrapper>
       </HeaderContainer>
