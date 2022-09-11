@@ -172,29 +172,58 @@ const Page = () => {
         return (
           <>
             <Header />
-            <ChapterHeaderContainer
-              className={`chapter-header ${
-                !refXOverflowing && 'justify-center'
-              }`}>
-              {productTypes.map((productType) => {
-                return (
-                  <Link key={productType} href={`/product-${productType}`}>
-                    <ChapterContainer>
-                      <ChapterImage
-                        src={`/assets/${assets[productType]}`}
-                        alt={'products type'}
-                        width={112}
-                        height={72}
-                        placeholder='blur'
-                        blurDataURL={`/assets/${assets[event]}`}
-                      />
-                      <ChapterMainText>
-                        {byProductType[productType][0].productType}
-                      </ChapterMainText>
-                    </ChapterContainer>
-                  </Link>
-                );
-              })}
+            <ChapterHeaderContainer>
+              {refXOverflowing && !refXScrollBegin && (
+                <ChapterHeaderPaddleLeftContainer
+                  onClick={() => {
+                    ChaptersContainerScrollingWrapperRef.current.scrollBy({
+                      top: 0,
+                      left: -500,
+                      behavior: 'smooth',
+                    });
+                  }}>
+                  <ChevronLeftIcon size={24} />
+                </ChapterHeaderPaddleLeftContainer>
+              )}
+              {refXOverflowing && !refXScrollEnd && (
+                <ChapterHeaderPaddleRightContainer
+                  onClick={() => {
+                    ChaptersContainerScrollingWrapperRef.current.scrollBy({
+                      top: 0,
+                      left: +500,
+                      behavior: 'smooth',
+                    });
+                  }}>
+                  <ChevronRightIcon size={24} />
+                </ChapterHeaderPaddleRightContainer>
+              )}
+              <ChaptersContainerScrollingWrapper
+                className='chapter-header'
+                ref={ChaptersContainerScrollingWrapperRef}>
+                <ChaptersContainer
+                  className={`${centerChapters && 'justify-center'}`}
+                  ref={chaptersContainerRef}>
+                  {productTypes.map((product) => {
+                    return (
+                      <Link key={product} href={`/product-${product}`}>
+                        <ChapterContainer>
+                          <ChapterImage
+                            src={`/assets/${assets[product]}`}
+                            alt={'event'}
+                            width={112}
+                            height={72}
+                            placeholder='blur'
+                            blurDataURL={`/assets/${assets[product]}`}
+                          />
+                          <ChapterMainText>
+                            {byProductType[product][0].productType}
+                          </ChapterMainText>
+                        </ChapterContainer>
+                      </Link>
+                    );
+                  })}
+                </ChaptersContainer>
+              </ChaptersContainerScrollingWrapper>
             </ChapterHeaderContainer>
             <Container>
               <Title>{byProductType[key2][0].productType}</Title>
