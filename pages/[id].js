@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { useEffect, useLayoutEffect, useReducer, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useOverflow } from 'use-overflow';
 import Header from '../components/header';
 import events from '../data/events.json';
