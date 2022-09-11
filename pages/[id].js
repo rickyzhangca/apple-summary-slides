@@ -16,8 +16,10 @@ import ChapterHeaderContainer, {
   BackToTopButton,
   BackToTopButtonText,
   ChapterContainer,
-  ChapterMainText,
   ChapterImage,
+  ChapterTextsContainer,
+  ChapterMainText,
+  ChapterCaptionText,
 } from './id.styles';
 import { ArrowCircleUpIcon } from 'octicons-extended-react/dist/index.umd';
 import Link from 'next/link';
@@ -32,6 +34,10 @@ const Page = () => {
   }
   const [, key1, key2] = id.match(idPattern);
 
+  // split time into another line
+  // only supports WWDC and Apple Events!
+  const eventNamePattern = /(WWDC|Apple Event)[\s](.*)/;
+
   switch (key1) {
     case 'event':
       if (events.includes(key2)) {
@@ -40,6 +46,7 @@ const Page = () => {
             <Header />
             <ChapterHeaderContainer>
               {events.map((event) => {
+                const eventName = byEvent[event][0].eventName;
                 return (
                   <Link key={event} href={`/event-${event}`}>
                     <ChapterContainer>
@@ -49,9 +56,20 @@ const Page = () => {
                         width={112}
                         height={72}
                       />
-                      <ChapterMainText>
-                        {byEvent[event][0].eventName}
-                      </ChapterMainText>
+                      {eventNamePattern.test(eventName) ? (
+                        <ChapterTextsContainer>
+                          <ChapterMainText>
+                            {eventName.match(eventNamePattern)[1]}
+                          </ChapterMainText>
+                          <ChapterCaptionText>
+                            {eventName.match(eventNamePattern)[2]}
+                          </ChapterCaptionText>
+                        </ChapterTextsContainer>
+                      ) : (
+                        <ChapterMainText>
+                          {byEvent[event][0].eventName}
+                        </ChapterMainText>
+                      )}
                     </ChapterContainer>
                   </Link>
                 );

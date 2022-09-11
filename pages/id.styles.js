@@ -19,7 +19,7 @@ export default ChapterHeaderContainer;
 export const ChapterContainer = tw.div`
     flex
     flex-col
-    gap-[6px]
+    gap-2
     items-center
     snap-center
     shrink-0
@@ -29,9 +29,23 @@ export const ChapterImage = tw(Image)`
     rounded-lg
 `;
 
+export const ChapterTextsContainer = tw.div`
+    flex
+    flex-col
+    gap-[2px]
+    items-center
+    snap-center
+`;
+
 export const ChapterMainText = tw.p`
     font-medium
     text-xs
+`;
+
+export const ChapterCaptionText = tw.p`
+    font-medium
+    text-xs
+    text-gray-500
 `;
 
 export const Container = tw.div`
