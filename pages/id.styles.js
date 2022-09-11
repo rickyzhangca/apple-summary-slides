@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import tw from 'tailwind-styled-components';
 
-export const ChapterHeaderContainer = tw.div`
+// has to have a default
+const ChapterHeaderContainer = tw.div`
     flex
     flex-row
     gap-6
@@ -12,6 +13,8 @@ export const ChapterHeaderContainer = tw.div`
     snap-none
     bg-gray-100
 `;
+
+export default ChapterHeaderContainer;
 
 export const ChapterContainer = tw.div`
     flex

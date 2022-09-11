@@ -6,8 +6,7 @@ import productTypes from '../data/productTypes.json';
 import byEvent from '../data/byEvent.json';
 import byProductType from '../data/byProductType.json';
 import assets from '../data/assets.json';
-import {
-  ChapterHeaderContainer,
+import ChapterHeaderContainer, {
   Container,
   Title,
   SlidesContainer,
@@ -116,7 +115,7 @@ const Page = () => {
                 {byProductType[key2].map((slide) => {
                   return (
                     <SlideContainer key={slide.slideFilename}>
-                      <Subtitle>{slide.productName}</Subtitle>
+                      <Subtitle>{`${slide.productName} @ ${slide.eventName}`}</Subtitle>
                       <SlideImage
                         src={`/slides/${slide.slideFilename}`}
                         alt={'slide'}
