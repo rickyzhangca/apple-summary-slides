@@ -61,12 +61,12 @@ const Header = () => {
       </Head>
       <Script
         async
-        src='https://www.googletagmanager.com/gtag/js?id=000'></Script>
+        src='https://www.googletagmanager.com/gtag/js?id=G-5T75DYXGHZ'></Script>
       <Script id='ga'>
         {`window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', '000');`}
+      gtag('config', 'G-5T75DYXGHZ');`}
       </Script>
       <HeaderContainer>
         <HeaderLeftWrapper>

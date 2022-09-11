@@ -6,3 +6,4 @@ package-lock.json
 .next/**
 out
 data
+.vercel
