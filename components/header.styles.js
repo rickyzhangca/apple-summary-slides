@@ -3,7 +3,9 @@ import tw from 'tailwind-styled-components';
 export const HeaderContainer = tw.header`
     flex
     flex-row
-    justify-between
+    lg:justify-between
+    gap-6
+    lg:gap-2
     items-center
     bg-gray-800
     px-6
@@ -11,10 +13,12 @@ export const HeaderContainer = tw.header`
 `;
 
 export const HeaderRightWrapper = tw.div`
-    min-w-[155px]
+    lg:min-w-[155px]
     flex
     flex-row
     justify-end
+    grow
+    lg:grow-0
 `;
 
 export const HeaderMiddleWrapper = tw.div`
@@ -24,7 +28,7 @@ export const HeaderMiddleWrapper = tw.div`
 `;
 
 export const HeaderLeftWrapper = tw.div`
-    min-w-[155px]
+    lg:min-w-[155px]
     flex
     flex-row
     justify-start

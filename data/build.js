@@ -10,55 +10,63 @@ const _ = require('lodash');
 // get args
 const { argv } = yargs
   .usage(
-    'Usage: $0 --imgs <images filepaths> --output1 <output1 filepath> --output2 <output2 filepath>'
+    'Usage: $0 --slides <slides filepaths> --assets <assets filepaths> --outputFolder <output folderpath>'
   )
   .example(
-    '$0 --imgs data/imgs/**/*.png --output1 data/byEvent.json --output2 data/byProduct.json'
+    '$0 --slides public/slides/**/*.png --assets public/assets/**/*.png --outputFolder data'
   )
-  .option('imgs', {
+  .option('slides', {
     type: 'array',
     demandOption: true,
     describe:
-      'Input images, filenames should be [event name]-[product type]-[product name].png',
+      'Input slides, filenames should be [event name]-[product type]-[product name].png',
   })
-  .option('output1', {
+  .option('assets', {
+    type: 'array',
+    demandOption: true,
+    describe:
+      'Input assets, filenames should be [event name].png or [product type].png',
+  })
+  .option('outputFolder', {
     type: 'string',
     demandOption: true,
-    describe: 'Output JSON file: by event',
-  })
-  .option('output2', {
-    type: 'string',
-    demandOption: true,
-    describe: 'Output JSON file, by product (type)',
+    describe:
+      'Output folder for JSON files. Files include by event, by product (type), events, product types.',
   });
 
-// find images
-const imageFilepaths = globby
-  .sync(argv.imgs)
-  .filter((filepath) => path.parse(filepath).ext === '.png');
-if (imageFilepaths.length === 0) {
+// find slides
+const slideFilepaths = globby.sync(argv.slides);
+if (slideFilepaths.length === 0) {
   // eslint-disable-next-line no-console
-  console.error('No images found');
+  console.error('No slides found');
   process.exit(1);
 }
 
-// process images
-let exitCode = 0;
-const images = imageFilepaths.map((imageFilepath) => {
-  try {
-    const imageFilename = path.parse(imageFilepath).base;
-    const imageFilenamePattern = /\[(.*?)\]-\[(.*?)\]-\[(.*?)\].png/;
+// find assets
+const assetFilepaths = globby.sync(argv.assets);
+if (assetFilepaths.length === 0) {
+  // eslint-disable-next-line no-console
+  console.error('No assets found');
+  process.exit(1);
+}
 
-    if (!imageFilenamePattern.test(imageFilename)) {
+let exitCode = 0;
+
+// process slides
+const slides = slideFilepaths.map((slideFilepath) => {
+  try {
+    const slideFilename = path.parse(slideFilepath).base;
+    const slideFilenamePattern = /\[(.*?)\]-\[(.*?)\]-\[(.*?)\][.]png/;
+
+    if (!slideFilenamePattern.test(slideFilename)) {
       throw new Error(
-        `${imageFilename}: Invalid filename. Not matching the pattern defined.`
+        `${slideFilename}: Invalid filename. Not matching the pattern defined.`
       );
     }
 
     const [, eventName, productType, productName] =
-      imageFilename.match(imageFilenamePattern);
-
-    return { eventName, productType, productName, imageFilepath };
+      slideFilename.match(slideFilenamePattern);
+    return { eventName, productType, productName, slideFilename };
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(error);
@@ -67,11 +75,87 @@ const images = imageFilepaths.map((imageFilepath) => {
   }
 });
 
+// process assets
+const assets = assetFilepaths.map((assetFilepath) => {
+  try {
+    const assetFilename = path.parse(assetFilepath).base;
+    const assetFilenamePattern = /(.*?)[.](?:png|svg)/;
+
+    if (!assetFilenamePattern.test(assetFilename)) {
+      throw new Error(
+        `${assetFilename}: Invalid filename. Not matching the pattern defined.`
+      );
+    }
+
+    const [, assetName] = assetFilename.match(assetFilenamePattern);
+
+    return { assetName, assetFilename };
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(error);
+    exitCode = 1;
+    return null;
+  }
+});
+
+/////////////////////////////////////////////////////////////////////////////
 // do not build if error occurred
 if (exitCode !== 0) {
   process.exit(exitCode);
 }
+/////////////////////////////////////////////////////////////////////////////
 
-// write output
-fs.outputJsonSync(path.resolve(argv.output1), _.groupBy(images, 'eventName'));
-fs.outputJsonSync(path.resolve(argv.output2), _.groupBy(images, 'productType'));
+// build images grouped by event and product type
+const byEvent = _.mapKeys(_.groupBy(slides, 'eventName'), (_, key) => {
+  return key.replace(' ', '');
+});
+const byProductType = _.mapKeys(_.groupBy(slides, 'productType'), (_, key) => {
+  return key.replace(' ', '');
+});
+
+// build data for events and product types
+const eventNames = _.map(_.map(slides, 'eventName'), (eventName) => {
+  return eventName.replace(' ', '');
+});
+const productTypes = _.map(_.map(slides, 'productType'), (productType) => {
+  return productType.replace(' ', '');
+});
+const assetNames = _.map(_.map(assets, 'assetName'), (asset) => {
+  return asset.replace(' ', '');
+});
+const diff = _.union(
+  _.difference(eventNames, assetNames),
+  _.difference(productTypes, assetNames)
+);
+
+// if there is no diff, we can safely say that all events and product types have their assets
+if (!_.isEqual(diff, [])) {
+  throw Error(
+    `the assets found are not matching with the assets required, difference: [${diff}]`
+  );
+}
+
+// write outputs
+fs.outputJsonSync(
+  path.resolve(`${argv.outputFolder}/assets.json`),
+  _.mapKeys(
+    _.mapValues(_.keyBy(assets, 'assetName'), 'assetFilename'),
+    (_, key) => {
+      return key.replace(' ', '');
+    }
+  )
+);
+
+fs.outputJsonSync(path.resolve(`${argv.outputFolder}/events.json`), eventNames);
+
+fs.outputJsonSync(
+  path.resolve(`${argv.outputFolder}/productTypes.json`),
+  productTypes
+);
+
+fs.outputJsonSync(path.resolve(`${argv.outputFolder}/byEvent.json`), byEvent);
+
+fs.outputJsonSync(
+  path.resolve(`${argv.outputFolder}/byProductType.json`),
+  byProductType
+);

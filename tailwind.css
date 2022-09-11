@@ -17,6 +17,7 @@
 html {
   @apply antialiased;
   @apply selection:bg-[#adadad62];
+  @apply scroll-smooth;
   font-family: Inter, system-ui, sans-serif;
 }
 

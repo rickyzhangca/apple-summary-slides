@@ -2415,6 +2415,11 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
+use-overflow@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/use-overflow/-/use-overflow-1.1.0.tgz#1e7e0acd732cb4123f486cd9c97a535eb864026a"
+  integrity sha512-NHGE8vTpMWKuh3V2JxHoUHu55/KiN5LVntAdMVwu2QkVxWWt1nTDjzTwDKUEetvmdqMSA1vpj37mqqFa+mPyzg==
+
 use-sync-external-store@1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz#7dbefd6ef3fe4e767a0cf5d7287aacfb5846928a"

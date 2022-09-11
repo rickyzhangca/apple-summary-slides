@@ -72,8 +72,8 @@ const Header = () => {
           </Link>
         </HeaderLeftWrapper>
         <HeaderMiddleWrapper>
-          <HeaderLink href='/events-wwdc2022'>By event</HeaderLink>
-          <HeaderLink href='/products-iphone'>By product</HeaderLink>
+          <HeaderLink href='/event-wwdc2022'>By event</HeaderLink>
+          <HeaderLink href='/product-mac'>By product</HeaderLink>
         </HeaderMiddleWrapper>
         <HeaderRightWrapper>
           <a
