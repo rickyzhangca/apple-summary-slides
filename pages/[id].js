@@ -2,11 +2,11 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useOverflow } from 'use-overflow';
 import Header from '../components/header';
-import events from '../data/events.json';
-import productTypes from '../data/productTypes.json';
-import byEvent from '../data/byEvent.json';
-import byProductType from '../data/byProductType.json';
-import assets from '../data/assets.json';
+import events from '../public/data/events.json';
+import productTypes from '../public/data/productTypes.json';
+import byEvent from '../public/data/byEvent.json';
+import byProductType from '../public/data/byProductType.json';
+import assets from '../public/data/assets.json';
 import ChapterHeaderContainer, {
   ChaptersContainerScrollingWrapper,
   ChaptersContainer,

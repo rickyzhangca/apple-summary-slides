@@ -13,7 +13,7 @@ const { argv } = yargs
     'Usage: $0 --slides <slides filepaths> --assets <assets filepaths> --outputFolder <output folderpath>'
   )
   .example(
-    '$0 --slides public/slides/**/*.webp --assets public/assets/**/* --outputFolder data'
+    '$0 --slides public/slides/**/*.webp --assets public/assets/**/* --outputFolder public/data'
   )
   .option('slides', {
     type: 'array',
