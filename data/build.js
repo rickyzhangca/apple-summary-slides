@@ -13,19 +13,19 @@ const { argv } = yargs
     'Usage: $0 --slides <slides filepaths> --assets <assets filepaths> --outputFolder <output folderpath>'
   )
   .example(
-    '$0 --slides public/slides/**/*.png --assets public/assets/**/*.png --outputFolder data'
+    '$0 --slides public/slides/**/*.webp --assets public/assets/**/* --outputFolder data'
   )
   .option('slides', {
     type: 'array',
     demandOption: true,
     describe:
-      'Input slides, filenames should be [event name]-[product type]-[product name].png',
+      'Input slides, filenames should be [event name]-[product type]-[product name].webp',
   })
   .option('assets', {
     type: 'array',
     demandOption: true,
     describe:
-      'Input assets, filenames should be [event name].png or [product type].png',
+      'Input assets, filenames should be [event name].webp or [product type].webp',
   })
   .option('outputFolder', {
     type: 'string',
@@ -56,7 +56,7 @@ let exitCode = 0;
 const slides = slideFilepaths.map((slideFilepath) => {
   try {
     const slideFilename = path.parse(slideFilepath).base;
-    const slideFilenamePattern = /\[(.*?)\]-\[(.*?)\]-\[(.*?)\][.]png/;
+    const slideFilenamePattern = /\[(.*?)\]-\[(.*?)\]-\[(.*?)\][.]webp/;
 
     if (!slideFilenamePattern.test(slideFilename)) {
       throw new Error(
@@ -79,7 +79,7 @@ const slides = slideFilepaths.map((slideFilepath) => {
 const assets = assetFilepaths.map((assetFilepath) => {
   try {
     const assetFilename = path.parse(assetFilepath).base;
-    const assetFilenamePattern = /(.*?)[.](?:png|svg)/;
+    const assetFilenamePattern = /(.*?)[.](?:webp|svg)/;
 
     if (!assetFilenamePattern.test(assetFilename)) {
       throw new Error(
