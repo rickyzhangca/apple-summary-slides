@@ -56,6 +56,8 @@ const Page = () => {
                         alt={'event'}
                         width={112}
                         height={72}
+                        placeholder='blur'
+                        blurDataURL={`/assets/${assets[event]}`}
                       />
                       {eventNamePattern.test(eventName) ? (
                         <ChapterTextsContainer>
@@ -88,6 +90,8 @@ const Page = () => {
                         alt={'slide'}
                         width={1920}
                         height={1080}
+                        placeholder='blur'
+                        blurDataURL={`/slides/${slide.slideFilename}`}
                       />
                     </SlideContainer>
                   );
@@ -119,6 +123,8 @@ const Page = () => {
                         alt={'products type'}
                         width={112}
                         height={72}
+                        placeholder='blur'
+                        blurDataURL={`/assets/${assets[event]}`}
                       />
                       <ChapterMainText>
                         {byProductType[productType][0].productType}
@@ -140,6 +146,8 @@ const Page = () => {
                         alt={'slide'}
                         width={1920}
                         height={1080}
+                        placeholder='blur'
+                        blurDataURL={`/slides/${slide.slideFilename}`}
                       />
                     </SlideContainer>
                   );

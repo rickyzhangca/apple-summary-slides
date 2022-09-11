@@ -3,7 +3,7 @@ module.exports = {
     return [
       {
         source: '/',
-        destination: '/event-AppleEventSummer2022',
+        destination: '/event-AppleEventSeptember2022',
       },
     ];
   },

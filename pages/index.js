@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 const Index = () => {
   const router = useRouter();
   useEffect(() => {
-    router.push('/event-AppleEventSummer2022', undefined, { shallow: true });
+    router.push('/event-AppleEventSeptember2022', undefined, { shallow: true });
   }, [router]);
   return <main />;
 };
