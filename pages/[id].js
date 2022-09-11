@@ -50,15 +50,12 @@ const Page = () => {
     }
   }, [chaptersContainerRef]);
 
-  console.log(refXScrollBegin);
-  console.log(refXScrollEnd);
-
   const router = useRouter();
   const id = router.query.id;
 
   const idPattern = /(.*)-(.*)/;
   if (!idPattern.test(id)) {
-    return <>404 regex</>; // should 404
+    return <></>; // nothing to render
   }
   const [, key1, key2] = id.match(idPattern);
 
@@ -134,6 +131,8 @@ const Page = () => {
                       </Link>
                     );
                   })}
+                  {/* work around for scrolling margins */}
+                  {!centerChapters && <div className={'w-6 shrink-0'}></div>}
                 </ChaptersContainer>
               </ChaptersContainerScrollingWrapper>
             </ChapterHeaderContainer>

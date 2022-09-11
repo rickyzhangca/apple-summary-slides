@@ -42,11 +42,13 @@ export const Title = tw.h1`
     cursor-pointer
 `;
 
-export const HeaderLink = tw.a`
+export const HeaderLink = tw.p`
     text-sm
     font-medium
     text-gray-300
     hover:no-underline
     hover:text-white
+    select-none
+    cursor-pointer
     transition
 `;
