@@ -51,3 +51,12 @@ a {
   @apply !text-sm;
   @apply !text-white;
 }
+
+.chapter-header {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+.chapter-header::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+}

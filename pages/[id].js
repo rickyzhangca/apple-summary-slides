@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect, useLayoutEffect, useReducer, useState } from 'react';
+import { useOverflow } from 'use-overflow';
 import Header from '../components/header';
 import events from '../data/events.json';
 import productTypes from '../data/productTypes.json';
@@ -7,6 +8,9 @@ import byEvent from '../data/byEvent.json';
 import byProductType from '../data/byProductType.json';
 import assets from '../data/assets.json';
 import ChapterHeaderContainer, {
+  ChapterHeaderScrollingContainer,
+  ChapterHeaderPaddleLeftContainer,
+  ChapterHeaderPaddleRightContainer,
   Container,
   Title,
   SlidesContainer,
@@ -21,10 +25,25 @@ import ChapterHeaderContainer, {
   ChapterMainText,
   ChapterCaptionText,
 } from './id.styles';
-import { ArrowCircleUpIcon } from 'octicons-extended-react/dist/index.umd';
+import {
+  ArrowCircleUpIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from 'octicons-extended-react/dist/index.umd';
 import Link from 'next/link';
 
 const Page = () => {
+  const horizontalRef = React.useRef(null);
+  const { refXOverflowing, refXScrollBegin, refXScrollEnd } =
+    useOverflow(horizontalRef);
+  console.log(refXOverflowing);
+  console.log(refXScrollBegin);
+  console.log(refXScrollEnd);
+
+  useLayoutEffect(() => {
+    console.log(horizontalRef.current.clientWidth);
+  });
+
   const router = useRouter();
   const id = router.query.id;
 
@@ -40,43 +59,72 @@ const Page = () => {
 
   switch (key1) {
     case 'event':
-      console.log(key2);
       if (events.includes(key2)) {
         return (
           <>
             <Header />
             <ChapterHeaderContainer>
-              {events.map((event) => {
-                const eventName = byEvent[event][0].eventName;
-                return (
-                  <Link key={event} href={`/event-${event}`}>
-                    <ChapterContainer>
-                      <ChapterImage
-                        src={`/assets/${assets[event]}`}
-                        alt={'event'}
-                        width={112}
-                        height={72}
-                        placeholder='blur'
-                        blurDataURL={`/assets/${assets[event]}`}
-                      />
-                      {eventNamePattern.test(eventName) ? (
-                        <ChapterTextsContainer>
+              {refXOverflowing && !refXScrollBegin && (
+                <ChapterHeaderPaddleLeftContainer
+                  onClick={() => {
+                    horizontalRef.current.scrollBy({
+                      top: 0,
+                      left: -500,
+                      behavior: 'smooth',
+                    });
+                  }}>
+                  <ChevronLeftIcon size={24} />
+                </ChapterHeaderPaddleLeftContainer>
+              )}
+              {refXOverflowing && !refXScrollEnd && (
+                <ChapterHeaderPaddleRightContainer
+                  onClick={() => {
+                    horizontalRef.current.scrollBy({
+                      top: 0,
+                      left: +500,
+                      behavior: 'smooth',
+                    });
+                  }}>
+                  <ChevronRightIcon size={24} />
+                </ChapterHeaderPaddleRightContainer>
+              )}
+              <ChapterHeaderScrollingContainer
+                className={`chapter-header ${
+                  refXOverflowing && !refXScrollBegin && 'justify-center'
+                }`}
+                ref={horizontalRef}>
+                {events.map((event) => {
+                  const eventName = byEvent[event][0].eventName;
+                  return (
+                    <Link key={event} href={`/event-${event}`}>
+                      <ChapterContainer>
+                        <ChapterImage
+                          src={`/assets/${assets[event]}`}
+                          alt={'event'}
+                          width={112}
+                          height={72}
+                          placeholder='blur'
+                          blurDataURL={`/assets/${assets[event]}`}
+                        />
+                        {eventNamePattern.test(eventName) ? (
+                          <ChapterTextsContainer>
+                            <ChapterMainText>
+                              {eventName.match(eventNamePattern)[1]}
+                            </ChapterMainText>
+                            <ChapterCaptionText>
+                              {eventName.match(eventNamePattern)[2]}
+                            </ChapterCaptionText>
+                          </ChapterTextsContainer>
+                        ) : (
                           <ChapterMainText>
-                            {eventName.match(eventNamePattern)[1]}
+                            {byEvent[event][0].eventName}
                           </ChapterMainText>
-                          <ChapterCaptionText>
-                            {eventName.match(eventNamePattern)[2]}
-                          </ChapterCaptionText>
-                        </ChapterTextsContainer>
-                      ) : (
-                        <ChapterMainText>
-                          {byEvent[event][0].eventName}
-                        </ChapterMainText>
-                      )}
-                    </ChapterContainer>
-                  </Link>
-                );
-              })}
+                        )}
+                      </ChapterContainer>
+                    </Link>
+                  );
+                })}
+              </ChapterHeaderScrollingContainer>
             </ChapterHeaderContainer>
             <Container>
               <Title>{byEvent[key2][0].eventName}</Title>
@@ -113,7 +161,10 @@ const Page = () => {
         return (
           <>
             <Header />
-            <ChapterHeaderContainer>
+            <ChapterHeaderContainer
+              className={`chapter-header ${
+                !refXOverflowing && 'justify-center'
+              }`}>
               {productTypes.map((productType) => {
                 return (
                   <Link key={productType} href={`/product-${productType}`}>

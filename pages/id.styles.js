@@ -3,18 +3,49 @@ import tw from 'tailwind-styled-components';
 
 // has to have a default
 const ChapterHeaderContainer = tw.div`
-    flex
-    flex-row
-    gap-6
     w-full
-    px-6
+    relative
+`;
+
+export default ChapterHeaderContainer;
+
+export const ChapterHeaderScrollingContainer = tw.div`
+    flex
+    flex-row    
+    gap-6
+    px-12
     py-4
     overflow-x-auto
     snap-none
     bg-gray-100
 `;
 
-export default ChapterHeaderContainer;
+const ChapterHeaderPaddleContainer = tw.div`
+    absolute
+    inset-y-2
+    flex
+    px-1
+    items-center
+    justify-center
+    text-gray-600
+    bg-gray-100
+    border-gray-300
+    z-10
+`;
+
+export const ChapterHeaderPaddleLeftContainer = tw(
+  ChapterHeaderPaddleContainer
+)`
+    left-0
+    border-r
+`;
+
+export const ChapterHeaderPaddleRightContainer = tw(
+  ChapterHeaderPaddleContainer
+)`
+    right-0
+    border-l
+`;
 
 export const ChapterContainer = tw.div`
     flex
@@ -61,6 +92,7 @@ export const Container = tw.div`
 export const Title = tw.h2`
     font-bold
     text-5xl
+    text-center
 `;
 
 export const SlidesContainer = tw.div`
@@ -82,6 +114,7 @@ export const SlideContainer = tw.div`
 export const Subtitle = tw.h3`
     font-semibold
     text-2xl
+    text-center
 `;
 
 export const SlideImage = tw(Image)`
