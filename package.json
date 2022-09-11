@@ -5,7 +5,7 @@
   "author": "Ricky Zhang",
   "scripts": {
     "build": "yarn build:data && yarn build:site",
-    "build:data": "node data/build.js --slides public/slides/**/*.webp --assets public/assets/**/* --outputFolder data",
+    "build:data": "node scripts/build.js --slides public/slides/**/*.webp --assets public/assets/**/* --outputFolder data",
     "build:site": "next build",
     "start": "next start",
     "dev": "next dev",
