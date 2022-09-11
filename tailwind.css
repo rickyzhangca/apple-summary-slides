@@ -18,6 +18,7 @@ html {
   @apply antialiased;
   @apply selection:bg-[#adadad62];
   @apply scroll-smooth;
+  @apply !transition-all;
   font-family: Inter, system-ui, sans-serif;
 }
 
