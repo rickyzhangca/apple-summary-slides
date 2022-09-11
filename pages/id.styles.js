@@ -56,6 +56,7 @@ export const ChapterContainer = tw.div`
     items-center
     snap-center
     shrink-0
+    group
 `;
 
 export const ChapterImage = tw(Image)`
@@ -72,12 +73,14 @@ export const ChapterTextsContainer = tw.div`
 export const ChapterMainText = tw.p`
     font-medium
     text-xs
+    group-hover:text-blue-600
 `;
 
 export const ChapterCaptionText = tw.p`
     font-medium
     text-xs
     text-gray-500
+    group-hover:text-blue-600
 `;
 
 export const Container = tw.div`
