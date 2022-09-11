@@ -107,22 +107,28 @@ if (exitCode !== 0) {
 
 // build images grouped by event and product type
 const byEvent = _.mapKeys(_.groupBy(slides, 'eventName'), (_, key) => {
-  return key.replace(' ', '');
+  return key.replaceAll(' ', '');
 });
 const byProductType = _.mapKeys(_.groupBy(slides, 'productType'), (_, key) => {
-  return key.replace(' ', '');
+  return key.replaceAll(' ', '');
 });
 
 // build data for events and product types
-const eventNames = _.map(_.map(slides, 'eventName'), (eventName) => {
-  return eventName.replace(' ', '');
-});
-const productTypes = _.map(_.map(slides, 'productType'), (productType) => {
-  return productType.replace(' ', '');
-});
-const assetNames = _.map(_.map(assets, 'assetName'), (asset) => {
-  return asset.replace(' ', '');
-});
+const eventNames = _.uniq(
+  _.map(_.map(slides, 'eventName'), (eventName) => {
+    return eventName.replaceAll(' ', '');
+  })
+);
+const productTypes = _.uniq(
+  _.map(_.map(slides, 'productType'), (productType) => {
+    return productType.replaceAll(' ', '');
+  })
+);
+const assetNames = _.uniq(
+  _.map(_.map(assets, 'assetName'), (asset) => {
+    return asset.replaceAll(' ', '');
+  })
+);
 const diff = _.union(
   _.difference(eventNames, assetNames),
   _.difference(productTypes, assetNames)
@@ -141,7 +147,7 @@ fs.outputJsonSync(
   _.mapKeys(
     _.mapValues(_.keyBy(assets, 'assetName'), 'assetFilename'),
     (_, key) => {
-      return key.replace(' ', '');
+      return key.replaceAll(' ', '');
     }
   )
 );

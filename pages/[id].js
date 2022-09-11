@@ -40,6 +40,7 @@ const Page = () => {
 
   switch (key1) {
     case 'event':
+      console.log(key2);
       if (events.includes(key2)) {
         return (
           <>

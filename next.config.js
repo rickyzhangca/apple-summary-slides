@@ -1,10 +1,10 @@
 module.exports = {
-    async rewrites() {
-      return [
-        {
-          source: '/',
-          destination: '/event-wwdc2022',
-        },
-      ]
-    },
-  }
+  async rewrites() {
+    return [
+      {
+        source: '/',
+        destination: '/event-AppleEventSummer2022',
+      },
+    ];
+  },
+};

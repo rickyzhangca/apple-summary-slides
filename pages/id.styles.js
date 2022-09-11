@@ -32,7 +32,6 @@ export const ChapterImage = tw(Image)`
 export const ChapterTextsContainer = tw.div`
     flex
     flex-col
-    gap-[2px]
     items-center
     snap-center
 `;
@@ -56,7 +55,7 @@ export const Container = tw.div`
     py-16
     gap-16
     items-center
-    max-w-[1920px]
+    max-w-[1280px]
 `;
 
 export const Title = tw.h2`
