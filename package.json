@@ -10,7 +10,9 @@
     "start": "next start",
     "dev": "next dev",
     "lint": "next lint",
-    "export": "next build && next export"
+    "export": "next build && next export",
+    "deploy": "next build && yarn vercel",
+    "deploy:prod": "next build && yarn vercel --prod"
   },
   "license": "MIT",
   "dependencies": {
