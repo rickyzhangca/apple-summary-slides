@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
 
 const Index = () => {
   const router = useRouter();
   useEffect(() => {
-    router.push('/event-AppleEventSeptember2022', undefined, { shallow: true });
+    router.push('/event-WWDC2023', undefined, { shallow: true });
   }, [router]);
   return <main />;
 };
