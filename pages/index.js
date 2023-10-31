@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 const Index = () => {
   const router = useRouter();
   useEffect(() => {
-    router.push('/event-AppleEventSeptember2023', undefined, {
+    router.push('/event-AppleEventOctober2023', undefined, {
       shallow: true,
     });
   }, [router]);
