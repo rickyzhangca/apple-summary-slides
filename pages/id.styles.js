@@ -75,6 +75,7 @@ export const ChapterMainText = tw.p`
     font-medium
     text-xs
     group-hover:text-blue-600
+    text-center
     select-none
 `;
 
@@ -83,6 +84,7 @@ export const ChapterCaptionText = tw.p`
     text-xs
     text-gray-500
     group-hover:text-blue-600
+    text-center
     select-none
 `;
 
