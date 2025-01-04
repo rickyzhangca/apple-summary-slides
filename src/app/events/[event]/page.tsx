@@ -33,7 +33,14 @@ export async function generateMetadata({ params }: PageProps) {
 
   return {
     title: `${originalEvent} - Apple Summary Slides`,
-    description: `Archive of Apple Summary slides from ${originalEvent}`,
+    description: `A collection of the "bento" summary slides created by Apple for ${originalEvent}`,
+    openGraph: {
+      title: `${originalEvent} - Apple Summary Slides`,
+      description: `A collection of the "bento" summary slides created by Apple for ${originalEvent}`,
+    },
+    alternates: {
+      canonical: `https://apple-summary-slides.vercel.app/events/${encodeUrl(originalEvent)}`,
+    },
   };
 }
 

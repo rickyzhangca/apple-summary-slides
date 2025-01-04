@@ -11,22 +11,53 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Apple Summary Slides',
+  metadataBase: new URL('https://apple-summary-slides.vercel.app'),
+  title: {
+    default: 'Apple Summary Slides',
+    template: '%s | Apple Summary Slides',
+  },
   description:
     'A collection of the "bento" summary slides created by Apple for WWDC and Apple Events',
   keywords:
-    'apple, summary, slides, products, events, wwdc, tiles, cards, iphone, ipad, mac, macbook, vision, bento, wrapped',
+    'apple, summary, slides, products, events, wwdc, tiles, cards, iphone, ipad, mac, macbook, vision, bento, wrapped, keynote, announcements, archive',
   authors: [{ name: 'Ricky Zhang' }],
-  icons: {
-    icon: [
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://apple-summary-slides.vercel.app/',
+    siteName: 'Apple Summary Slides',
+    title: 'Apple Summary Slides',
+    description:
+      'A collection of the "bento" summary slides created by Apple for WWDC and Apple Events',
+    images: [
       {
-        url: '/favicon.svg',
-        type: 'image/svg+xml',
+        url: '/og.webp',
+        width: 1200,
+        height: 630,
+        alt: 'Apple Summary Slides Preview',
       },
     ],
   },
-  other: {
-    language: 'English',
+  twitter: {
+    card: 'summary_large_image',
+    creator: '@rickyrickyriri',
+    title: 'Apple Summary Slides',
+    description:
+      'A collection of the "bento" summary slides created by Apple for WWDC and Apple Events',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: 'https://apple-summary-slides.vercel.app/',
   },
 };
 
