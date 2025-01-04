@@ -63,6 +63,13 @@ export const EventsTab = () => {
                   {event.name.slice(11)}
                 </p>
               </div>
+            ) : event.name.startsWith('Apple Announcement') ? (
+              <div className="flex flex-col items-center gap-1">
+                <p className="text-sm">Announcement</p>
+                <p className="text-xs font-medium text-zinc-400">
+                  {event.name.slice(18)}
+                </p>
+              </div>
             ) : event.name.startsWith('WWDC') ? (
               <div className="flex flex-col items-center gap-1">
                 <p className="text-sm">WWDC</p>

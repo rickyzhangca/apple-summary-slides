@@ -2,6 +2,24 @@ import { Slide } from './slides';
 
 type RawSlide = Omit<Slide, 'imageUrl' | 'id'>;
 
+const fromAppleAnnouncementOctober2024: RawSlide[] = [
+  {
+    title: 'Mac Mini M4',
+    product: 'Mac',
+  },
+  {
+    title: 'MacBook Pro 14 and 16 M4',
+    product: 'Mac',
+  },
+  {
+    title: 'iMac M4',
+    product: 'Mac',
+  },
+].map(slide => ({
+  ...slide,
+  event: 'Apple Announcement October 2024',
+}));
+
 const fromAppleEventApril2021: RawSlide[] = [
   {
     title: 'iMac (2021)',
@@ -571,6 +589,7 @@ const fromWWDC2024: RawSlide[] = [
 }));
 
 export const raw: RawSlide[] = [
+  ...fromAppleAnnouncementOctober2024,
   ...fromAppleEventSeptember2024,
   ...fromWWDC2024,
   ...fromAppleEventMay2024,
