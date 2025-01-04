@@ -16,6 +16,10 @@ export const metadata: Metadata = {
     default: 'Apple Summary Slides',
     template: '%s | Apple Summary Slides',
   },
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+  },
   description:
     'A collection of the "bento" summary slides created by Apple for WWDC and Apple Events',
   keywords:

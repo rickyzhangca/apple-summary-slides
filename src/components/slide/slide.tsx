@@ -12,7 +12,7 @@ type SlideProps = {
 export const Slide = ({ slide, highlight }: SlideProps) => {
   return (
     <div className="flex flex-col gap-3 sm:gap-4">
-      <div className="flex flex-col pl-0.5 sm:gap-0.5">
+      <div className="flex flex-col items-start pl-0.5 sm:gap-0.5">
         <h3 className="text-lg font-medium sm:text-xl">{slide.title}</h3>
         <Link
           href={`/${highlight === 'event' ? 'events' : 'products'}/${encodeUrl(
