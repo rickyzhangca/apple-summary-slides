@@ -2,7 +2,7 @@ import { tw } from '@/utils';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
-import { Footer, Header } from '../components';
+import { Analytics, Footer, Header } from '../components';
 import './globals.css';
 
 const inter = Inter({
@@ -71,6 +71,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       lang="en"
       className={tw(inter.className, 'bg-zinc-100 text-zinc-900')}
     >
+      <head>
+        <Analytics />
+      </head>
       <body className="flex min-h-dvh flex-col">
         <Header />
         <div className="mx-3 grow border-l border-r border-zinc-300 md:mx-10 xl:mx-12 2xl:mx-auto 2xl:w-[1660px]">

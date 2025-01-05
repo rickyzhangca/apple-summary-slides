@@ -1,3 +1,4 @@
+export * from './analytics';
 export * from './diamond';
 export * from './footer';
 export * from './header';
