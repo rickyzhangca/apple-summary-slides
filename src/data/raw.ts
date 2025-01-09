@@ -568,6 +568,22 @@ const fromWWDC2024: RawSlide[] = [
     product: 'Apple Watch',
   },
   {
+    title: 'Platforms State of the Union',
+    product: 'Developers',
+  },
+  {
+    title: 'Swift UI - Crafting Expereinces',
+    product: 'Developers',
+  },
+  {
+    title: 'Swift UI - Fresh Apps',
+    product: 'Developers',
+  },
+  {
+    title: 'Swift UI - Windowing',
+    product: 'Developers',
+  },
+  {
     title: 'macOS 15',
     product: 'Mac',
   },
