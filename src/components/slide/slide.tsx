@@ -33,7 +33,7 @@ export const Slide = ({ slide, highlight }: SlideProps) => {
         alt={slide.title}
         width={1920}
         height={1080}
-        className="h-auto w-full overflow-hidden"
+        className="h-auto w-full overflow-hidden border border-zinc-200"
         quality={100}
       />
     </div>
