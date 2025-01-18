@@ -553,6 +553,14 @@ const fromWWDC2023: RawSlide[] = [
     title: 'iOS 17',
     product: 'iPhone',
   },
+  {
+    title: 'New in Swift UI 1',
+    product: 'Developers',
+  },
+  {
+    title: 'New in Swift UI 2',
+    product: 'Developers',
+  },
 ].map(slide => ({
   ...slide,
   event: 'WWDC 2023',
