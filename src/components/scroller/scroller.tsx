@@ -100,8 +100,8 @@ export const Scroller = ({ type, ref }: ScrollerProps) => {
         className={tw(
           'absolute inset-y-0 z-20 hidden w-16 sm:flex',
           type === 'left'
-            ? 'left-0 bg-gradient-to-r from-zinc-100/60 to-transparent'
-            : 'right-0 bg-gradient-to-l from-zinc-100/60 to-transparent'
+            ? 'left-0 bg-linear-to-r from-zinc-100/60 to-transparent'
+            : 'right-0 bg-linear-to-l from-zinc-100/60 to-transparent'
         )}
       />
     </>

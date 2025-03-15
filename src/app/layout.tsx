@@ -74,9 +74,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         <Analytics />
       </head>
-      <body className="flex min-h-dvh flex-col">
+      <body
+        className={tw(
+          'flex min-h-dvh flex-col',
+          process.env.NODE_ENV === 'development' ? 'debug-screens' : ''
+        )}
+      >
         <Header />
-        <div className="mx-3 grow border-l border-r border-zinc-300 md:mx-10 xl:mx-12 2xl:mx-auto 2xl:w-[1660px]">
+        <div className="mx-3 grow border-r border-l border-zinc-300 md:mx-10 xl:mx-12 2xl:mx-auto 2xl:w-[1660px]">
           {children}
         </div>
         <Footer />

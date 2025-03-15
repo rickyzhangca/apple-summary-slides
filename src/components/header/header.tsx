@@ -18,16 +18,18 @@ export const Header = () => {
           <Link
             href="https://github.com/rickyzhangca/apple-summary-slides"
             target="_blank"
-            className="rounded-md border border-transparent p-2 transition-colors duration-75 hover:border-zinc-300 hover:bg-zinc-200"
+            className="flex items-center gap-1.5 rounded-md border border-transparent p-2 transition-colors duration-75 hover:border-zinc-300 hover:bg-zinc-200"
           >
             <Image src="/github.svg" alt="GitHub" width={20} height={20} />
+            83
           </Link>
           <Link
             href="https://www.figma.com/community/file/1150817983915754582/all-apple-event-summary-slides-2019-2024"
             target="_blank"
-            className="rounded-md border border-transparent p-2 transition-colors duration-75 hover:border-zinc-300 hover:bg-zinc-200"
+            className="flex items-center gap-1 rounded-md border border-transparent p-2 transition-colors duration-75 hover:border-zinc-300 hover:bg-zinc-200"
           >
             <Image src="/figma.svg" alt="Figma" width={20} height={20} />
+            12.9K
           </Link>
         </div>
       </div>
