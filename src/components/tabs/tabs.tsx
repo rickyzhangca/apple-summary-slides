@@ -16,11 +16,18 @@ export const Tabs = () => {
     activeTab = 'products';
   } else if (pathname.startsWith('/years')) {
     activeTab = 'years';
+  } else if (pathname.startsWith('/all')) {
+    activeTab = 'all';
   }
 
   return (
     <TabsPrimitive defaultValue={activeTab}>
       <TabsList>
+        <TabsTrigger value="all">
+          <Link href="/all">
+            All slides
+          </Link>
+        </TabsTrigger>
         <TabsTrigger value="events">
           <Link href={`/events/${encodeUrl(eventsFromSlides[0].name)}`}>
             By events

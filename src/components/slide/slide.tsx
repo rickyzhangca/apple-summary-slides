@@ -35,6 +35,7 @@ export const Slide = ({ slide, highlight }: SlideProps) => {
         height={1080}
         className="h-auto w-full overflow-hidden border border-zinc-200"
         quality={100}
+        loading="lazy"
       />
     </div>
   );
