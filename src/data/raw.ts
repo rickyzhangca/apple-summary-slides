@@ -628,6 +628,10 @@ const fromWWDC2025: RawSlide[] = [
     product: 'Apple Watch',
   },
   {
+    title: 'Platforms State of the Union',
+    product: 'Developers',
+  },
+  {
     title: 'macOS 26',
     product: 'Mac',
   },
