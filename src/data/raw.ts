@@ -532,6 +532,14 @@ const fromWWDC2023: RawSlide[] = [
     product: 'Apple Watch',
   },
   {
+    title: 'New in Swift UI 1',
+    product: 'Developers',
+  },
+  {
+    title: 'New in Swift UI 2',
+    product: 'Developers',
+  },
+  {
     title: 'Apple M2 Ultra Chip',
     product: 'Mac',
   },
@@ -562,14 +570,6 @@ const fromWWDC2023: RawSlide[] = [
   {
     title: 'iOS 17',
     product: 'iPhone',
-  },
-  {
-    title: 'New in Swift UI 1',
-    product: 'Developers',
-  },
-  {
-    title: 'New in Swift UI 2',
-    product: 'Developers',
   },
 ].map(slide => ({
   ...slide,
@@ -622,7 +622,38 @@ const fromWWDC2024: RawSlide[] = [
   event: 'WWDC 2024',
 }));
 
+const fromWWDC2025: RawSlide[] = [
+  {
+    title: 'watchOS 26',
+    product: 'Apple Watch',
+  },
+  {
+    title: 'macOS 26',
+    product: 'Mac',
+  },
+  {
+    title: 'tvOS 26',
+    product: 'TV and Home',
+  },
+  {
+    title: 'visionOS 26',
+    product: 'Vision',
+  },
+  {
+    title: 'iPadOS 26',
+    product: 'iPad',
+  },
+  {
+    title: 'iOS 26',
+    product: 'iPhone',
+  },
+].map(slide => ({
+  ...slide,
+  event: 'WWDC 2025',
+}));
+
 export const raw: RawSlide[] = [
+  ...fromWWDC2025,
   ...fromAppleAnnouncementFebruary2025,
   ...fromAppleAnnouncementOctober2024,
   ...fromAppleEventSeptember2024,
