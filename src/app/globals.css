@@ -1,6 +1,6 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 @plugin "tailwindcss-debug-screens" {
-  position: 'top, right';
+  position: "top, right";
 }
 
 @theme {

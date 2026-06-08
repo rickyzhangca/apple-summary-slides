@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { tw } from '@/utils';
-import * as TabsPrimitive from '@radix-ui/react-tabs';
-import * as React from 'react';
+import * as TabsPrimitive from "@radix-ui/react-tabs";
+import * as React from "react";
+import { tw } from "@/utils";
 
 const Tabs = TabsPrimitive.Root;
 
@@ -11,8 +11,8 @@ const TabsList = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>
 >(({ className, children, ...props }, ref) => (
   <TabsPrimitive.List
+    className={tw("relative inline-flex w-full px-2 pt-2", className)}
     ref={ref}
-    className={tw('relative inline-flex w-full px-2 pt-2', className)}
     {...props}
   >
     {children}
@@ -27,11 +27,11 @@ const TabsTrigger = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>
 >(({ className, ...props }, ref) => (
   <TabsPrimitive.Trigger
-    ref={ref}
     className={tw(
-      'focus-visible:ring-ring inline-flex items-center justify-center whitespace-nowrap rounded-t-md border-x border-t border-transparent px-3 py-2 text-sm font-medium text-zinc-500 ring-offset-background transition-all hover:text-zinc-900 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:border-zinc-300 data-[state=active]:bg-zinc-100 data-[state=active]:text-zinc-900',
+      "inline-flex items-center justify-center whitespace-nowrap rounded-t-md border-transparent border-x border-t px-3 py-2 font-medium text-sm text-zinc-500 ring-offset-background transition-all hover:text-zinc-900 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:border-zinc-300 data-[state=active]:bg-zinc-100 data-[state=active]:text-zinc-900",
       className
     )}
+    ref={ref}
     {...props}
   />
 ));
@@ -42,11 +42,11 @@ const TabsContent = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content>
 >(({ className, ...props }, ref) => (
   <TabsPrimitive.Content
-    ref={ref}
     className={tw(
-      'focus-visible:ring-ring mt-2 ring-offset-background focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2',
+      "mt-2 ring-offset-background focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
       className
     )}
+    ref={ref}
     {...props}
   />
 ));

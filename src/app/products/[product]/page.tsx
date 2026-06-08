@@ -1,15 +1,15 @@
-import { Slide, Tabs } from '@/components';
-import { getSlidesByProduct, slides } from '@/data';
-import { decodeUrl, encodeUrl } from '@/utils';
-import { notFound } from 'next/navigation';
+import { notFound } from "next/navigation";
+import { Slide, Tabs } from "@/components";
+import { getSlidesByProduct, slides } from "@/data";
+import { decodeUrl, encodeUrl } from "@/utils";
 
 export async function generateStaticParams() {
   const products = new Set<string>();
-  slides.forEach(slide => {
+  slides.forEach((slide) => {
     products.add(encodeUrl(slide.product));
   });
 
-  return Array.from(products).map(product => ({
+  return Array.from(products).map((product) => ({
     product,
   }));
 }
@@ -21,13 +21,13 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps) {
   const decodedProduct = decodeUrl((await params).product);
   const originalProduct = slides.find(
-    slide => slide.product.toLowerCase() === decodedProduct.toLowerCase()
+    (slide) => slide.product.toLowerCase() === decodedProduct.toLowerCase()
   )?.product;
 
   if (!originalProduct) {
     return {
-      title: 'Not Found - Apple Summary Slides',
-      description: 'Product not found',
+      title: "Not Found - Apple Summary Slides",
+      description: "Product not found",
     };
   }
 
@@ -59,8 +59,8 @@ export default async function ProductPage({ params }: PageProps) {
       <Tabs />
       <div className="flex flex-col gap-6 p-3 sm:gap-8 md:p-5 xl:p-6">
         <h2 className="sr-only">Slides for {originalProduct}</h2>
-        {slides.map(slide => (
-          <Slide key={slide.id} slide={slide} highlight="product" />
+        {slides.map((slide) => (
+          <Slide highlight="product" key={slide.id} slide={slide} />
         ))}
       </div>
     </div>

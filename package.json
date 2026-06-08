@@ -1,14 +1,4 @@
 {
-  "name": "apple-summary-slides",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "slides": "tsx scripts/generate-raw-slides.ts slides"
-  },
   "dependencies": {
     "@radix-ui/react-tabs": "^1.1.12",
     "clsx": "^2.1.1",
@@ -19,6 +9,7 @@
     "tailwind-merge": "^3.3.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.4.16",
     "@eslint/eslintrc": "^3.3.1",
     "@tailwindcss/postcss": "^4.1.8",
     "@types/node": "^22.15.30",
@@ -27,11 +18,23 @@
     "eslint": "^9.28.0",
     "eslint-config-next": "15.2.2",
     "postcss": "^8.5.4",
-    "prettier": "^3.5.3",
-    "prettier-plugin-tailwindcss": "^0.6.12",
     "tailwindcss": "^4.1.8",
     "tailwindcss-debug-screens": "^3.0.1",
     "tsx": "^4.19.4",
-    "typescript": "^5.8.3"
-  }
+    "typescript": "^5.8.3",
+    "ultracite": "7.8.2"
+  },
+  "name": "apple-summary-slides",
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "slides": "tsx scripts/generate-raw-slides.ts slides",
+    "check": "ultracite check",
+    "fix": "ultracite fix",
+    "clean": "biome format --write && biome lint --write"
+  },
+  "version": "0.1.0",
+  "private": true
 }

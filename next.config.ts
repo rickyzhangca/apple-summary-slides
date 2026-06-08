@@ -1,10 +1,10 @@
-import type { NextConfig } from 'next';
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: 'apple-summary-slides-images.b-cdn.net',
+        hostname: "apple-summary-slides-images.b-cdn.net",
       },
     ],
   },

@@ -1,51 +1,51 @@
-import { tw } from '@/utils';
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import { ReactNode } from 'react';
-import { Analytics, Footer, Header } from '../components';
-import './globals.css';
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import type { ReactNode } from "react";
+import { tw } from "@/utils";
+import { Analytics, Footer, Header } from "../components";
+import "./globals.css";
 
 const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://apple-summary-slides.vercel.app'),
+  metadataBase: new URL("https://apple-summary-slides.vercel.app"),
   title: {
-    default: 'Apple Summary Slides',
-    template: '%s | Apple Summary Slides',
+    default: "Apple Summary Slides",
+    template: "%s | Apple Summary Slides",
   },
   icons: {
-    icon: '/favicon.svg',
-    shortcut: '/favicon.svg',
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
   },
   description:
     'A collection of the "bento" summary slides created by Apple for WWDC and Apple Events',
   keywords:
-    'apple, summary, slides, products, events, wwdc, tiles, cards, iphone, ipad, mac, macbook, vision, bento, wrapped, keynote, announcements, archive',
-  authors: [{ name: 'Ricky Zhang' }],
+    "apple, summary, slides, products, events, wwdc, tiles, cards, iphone, ipad, mac, macbook, vision, bento, wrapped, keynote, announcements, archive",
+  authors: [{ name: "Ricky Zhang" }],
   openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://apple-summary-slides.vercel.app/',
-    siteName: 'Apple Summary Slides',
-    title: 'Apple Summary Slides',
+    type: "website",
+    locale: "en_US",
+    url: "https://apple-summary-slides.vercel.app/",
+    siteName: "Apple Summary Slides",
+    title: "Apple Summary Slides",
     description:
       'A collection of the "bento" summary slides created by Apple for WWDC and Apple Events',
     images: [
       {
-        url: '/og.webp',
+        url: "/og.webp",
         width: 1200,
         height: 630,
-        alt: 'Apple Summary Slides Preview',
+        alt: "Apple Summary Slides Preview",
       },
     ],
   },
   twitter: {
-    card: 'summary_large_image',
-    creator: '@rickyrickyriri',
-    title: 'Apple Summary Slides',
+    card: "summary_large_image",
+    creator: "@rickyrickyriri",
+    title: "Apple Summary Slides",
     description:
       'A collection of the "bento" summary slides created by Apple for WWDC and Apple Events',
   },
@@ -55,33 +55,33 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
   alternates: {
-    canonical: 'https://apple-summary-slides.vercel.app/',
+    canonical: "https://apple-summary-slides.vercel.app/",
   },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
+      className={tw(inter.className, "bg-zinc-100 text-zinc-900")}
       lang="en"
-      className={tw(inter.className, 'bg-zinc-100 text-zinc-900')}
     >
       <head>
         <Analytics />
       </head>
       <body
         className={tw(
-          'flex min-h-dvh flex-col',
-          process.env.NODE_ENV === 'development' ? 'debug-screens' : ''
+          "flex min-h-dvh flex-col",
+          process.env.NODE_ENV === "development" ? "debug-screens" : ""
         )}
       >
         <Header />
-        <div className="mx-3 grow border-r border-l border-zinc-300 md:mx-10 xl:mx-12 2xl:mx-auto 2xl:w-[1660px]">
+        <div className="mx-3 grow border-zinc-300 border-r border-l md:mx-10 xl:mx-12 2xl:mx-auto 2xl:w-[1660px]">
           {children}
         </div>
         <Footer />
