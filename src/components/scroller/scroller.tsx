@@ -4,10 +4,10 @@ import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { tw } from "@/utils";
 
-type ScrollerProps = {
-  type: "left" | "right";
+interface ScrollerProps {
   ref: React.RefObject<HTMLDivElement | null>;
-};
+  type: "left" | "right";
+}
 
 export const Scroller = ({ type, ref }: ScrollerProps) => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -66,7 +66,7 @@ export const Scroller = ({ type, ref }: ScrollerProps) => {
 
   return (
     <>
-      <div
+      <button
         className={tw(
           "absolute top-1/2 z-30 hidden -translate-y-1/2 cursor-pointer rounded-full border border-zinc-300 bg-zinc-100 p-2 shadow-lg hover:bg-zinc-200 active:bg-zinc-100 sm:flex",
           type === "left" ? "left-2" : "right-2"
@@ -97,13 +97,14 @@ export const Scroller = ({ type, ref }: ScrollerProps) => {
             }, 500); // Typical smooth scroll duration
           }
         }}
+        type="button"
       >
         {type === "left" ? (
           <ChevronLeftIcon className="size-5" />
         ) : (
           <ChevronRightIcon className="size-5" />
         )}
-      </div>
+      </button>
       <div
         className={tw(
           "absolute inset-y-0 z-20 hidden w-16 sm:flex",

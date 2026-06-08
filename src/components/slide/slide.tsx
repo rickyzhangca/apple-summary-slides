@@ -3,10 +3,10 @@ import Link from "next/link";
 import type { Slide as SlideType } from "@/data";
 import { encodeUrl } from "@/utils";
 
-type SlideProps = {
-  slide: SlideType;
+interface SlideProps {
   highlight: "event" | "product";
-};
+  slide: SlideType;
+}
 
 export const Slide = ({ slide, highlight }: SlideProps) => {
   return (
@@ -29,6 +29,7 @@ export const Slide = ({ slide, highlight }: SlideProps) => {
       </div>
       {/* not using next image to save bandwidth on vercel */}
       {/* bunny cdn will handle caching */}
+      {/* biome-ignore lint/performance/noImgElement: CDN img avoids Vercel image optimization bandwidth */}
       <img
         alt={slide.title}
         className="h-auto w-full overflow-hidden border border-zinc-200"

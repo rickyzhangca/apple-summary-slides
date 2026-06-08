@@ -5,9 +5,9 @@ import { decodeUrl, encodeUrl } from "@/utils";
 
 export async function generateStaticParams() {
   const events = new Set<string>();
-  slides.forEach((slide) => {
+  for (const slide of slides) {
     events.add(encodeUrl(slide.event));
-  });
+  }
 
   return Array.from(events).map((event) => ({
     event,

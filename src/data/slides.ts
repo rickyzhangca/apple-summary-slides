@@ -54,13 +54,13 @@ export const productsFromSlides = slides
     imageUrl: `https://apple-summary-slides-images.b-cdn.net/products/${encodeURIComponent(product)}.webp`,
   }));
 
-export async function getSlidesByProduct(product: string) {
+export function getSlidesByProduct(product: string) {
   return slides.filter(
     (slide) => slide.product.toLowerCase() === product.toLowerCase()
   );
 }
 
-export async function getSlidesByEvent(event: string) {
+export function getSlidesByEvent(event: string) {
   return slides.filter(
     (slide) => slide.event.toLowerCase() === event.toLowerCase()
   );

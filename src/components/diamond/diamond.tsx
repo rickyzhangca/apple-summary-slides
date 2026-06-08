@@ -1,8 +1,8 @@
 import { tw } from "@/utils";
 
-type DiamondProps = {
+interface DiamondProps {
   position: "top-left" | "top-right" | "bottom-left" | "bottom-right";
-};
+}
 
 export const Diamond = ({ position }: DiamondProps) => (
   <div

@@ -1,12 +1,16 @@
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import type { Slide } from "../src/data/slides";
 
 type RawSlide = Omit<Slide, "imageUrl" | "id">;
 
+const SLIDE_FILENAME_REGEX = /\[(.*?)\]-\[(.*?)\]-\[(.*?)\]\.webp$/;
+const YEAR_REGEX = /\d{4}/;
+const NON_ALPHANUMERIC_REGEX = /[^a-zA-Z0-9]/g;
+
 function extractSlideInfo(filename: string): RawSlide | null {
   // Expected format: "[Event Name]-[Product Name]-[Title].webp"
-  const match = filename.match(/\[(.*?)\]-\[(.*?)\]-\[(.*?)\]\.webp$/);
+  const match = filename.match(SLIDE_FILENAME_REGEX);
   if (!match) {
     console.warn(`Skipping file ${filename} - does not match expected format`);
     return null;
@@ -41,9 +45,9 @@ function getEventDate(event: string): Date {
   let month = 0; // default to January
 
   // Extract year (assuming it's always at the end)
-  const yearMatch = event.match(/\d{4}/);
+  const yearMatch = event.match(YEAR_REGEX);
   if (yearMatch) {
-    year = Number.parseInt(yearMatch[0]);
+    year = Number.parseInt(yearMatch[0], 10);
   }
 
   // Extract month
@@ -66,14 +70,14 @@ function generateRawSlides(directoryPath: string): Record<string, RawSlide[]> {
   const files = fs.readdirSync(directoryPath);
   const slidesByEvent: Record<string, RawSlide[]> = {};
 
-  files.forEach((file) => {
+  for (const file of files) {
     if (!file.endsWith(".webp")) {
-      return;
+      continue;
     }
 
     const slideInfo = extractSlideInfo(file);
     if (!slideInfo) {
-      return;
+      continue;
     }
 
     const { event } = slideInfo;
@@ -81,7 +85,7 @@ function generateRawSlides(directoryPath: string): Record<string, RawSlide[]> {
       slidesByEvent[event] = [];
     }
     slidesByEvent[event].push(slideInfo);
-  });
+  }
 
   return slidesByEvent;
 }
@@ -93,21 +97,21 @@ function generateTypeScriptCode(
   code += `type RawSlide = Omit<Slide, 'imageUrl' | 'id'>;\n\n`;
 
   // Generate individual event arrays
-  Object.entries(slidesByEvent).forEach(([event, slides]) => {
-    const variableName = `from${event.replace(/[^a-zA-Z0-9]/g, "")}`;
+  for (const [event, slides] of Object.entries(slidesByEvent)) {
+    const variableName = `from${event.replace(NON_ALPHANUMERIC_REGEX, "")}`;
 
     code += `const ${variableName}: RawSlide[] = [\n`;
-    slides.forEach((slide) => {
+    for (const slide of slides) {
       code += "  {\n";
       code += `    title: '${slide.title}',\n`;
       code += `    product: '${slide.product}',\n`;
       code += "  },\n";
-    });
+    }
     code += "].map(slide => ({\n";
     code += "  ...slide,\n";
     code += `  event: '${event}',\n`;
     code += "}));\n\n";
-  });
+  }
 
   // Sort events by date (latest first)
   const sortedEvents = Object.keys(slidesByEvent).sort((a, b) => {
@@ -118,10 +122,10 @@ function generateTypeScriptCode(
 
   // Generate the final export with sorted events
   code += "export const raw: RawSlide[] = [\n";
-  sortedEvents.forEach((event) => {
-    const variableName = `from${event.replace(/[^a-zA-Z0-9]/g, "")}`;
+  for (const event of sortedEvents) {
+    const variableName = `from${event.replace(NON_ALPHANUMERIC_REGEX, "")}`;
     code += `  ...${variableName},\n`;
-  });
+  }
   code += "] as const;\n";
 
   return code;

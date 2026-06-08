@@ -10,6 +10,37 @@ import { encodeUrl, tw } from "@/utils";
 import { Diamond } from "../diamond";
 import { Scroller } from "../scroller";
 
+function EventLabel({ name }: { name: string }) {
+  if (name.startsWith("Apple Event")) {
+    return (
+      <div className="flex flex-col items-center gap-0.5">
+        <p className="text-sm">Apple Event</p>
+        <p className="font-medium text-xs text-zinc-400">{name.slice(11)}</p>
+      </div>
+    );
+  }
+
+  if (name.startsWith("Apple Announcement")) {
+    return (
+      <div className="flex flex-col items-center gap-1">
+        <p className="text-sm">Announcement</p>
+        <p className="font-medium text-xs text-zinc-400">{name.slice(18)}</p>
+      </div>
+    );
+  }
+
+  if (name.startsWith("WWDC")) {
+    return (
+      <div className="flex flex-col items-center gap-1">
+        <p className="text-sm">WWDC</p>
+        <p className="font-medium text-xs text-zinc-400">{name.slice(5)}</p>
+      </div>
+    );
+  }
+
+  return <p className="text-sm">{name}</p>;
+}
+
 export const EventsTab = () => {
   const pathname = usePathname();
   const ref = useRef<HTMLDivElement>(null);
@@ -60,30 +91,7 @@ export const EventsTab = () => {
               src={event.imageUrl}
               width={120}
             />
-            {event.name.startsWith("Apple Event") ? (
-              <div className="flex flex-col items-center gap-0.5">
-                <p className="text-sm">Apple Event</p>
-                <p className="font-medium text-xs text-zinc-400">
-                  {event.name.slice(11)}
-                </p>
-              </div>
-            ) : event.name.startsWith("Apple Announcement") ? (
-              <div className="flex flex-col items-center gap-1">
-                <p className="text-sm">Announcement</p>
-                <p className="font-medium text-xs text-zinc-400">
-                  {event.name.slice(18)}
-                </p>
-              </div>
-            ) : event.name.startsWith("WWDC") ? (
-              <div className="flex flex-col items-center gap-1">
-                <p className="text-sm">WWDC</p>
-                <p className="font-medium text-xs text-zinc-400">
-                  {event.name.slice(5)}
-                </p>
-              </div>
-            ) : (
-              <p className="text-sm">{event.name}</p>
-            )}
+            <EventLabel name={event.name} />
           </Link>
         ))}
       </div>
