@@ -694,7 +694,22 @@ const fromWWDC2025: RawSlide[] = [
   event: 'WWDC 2025',
 }));
 
+const fromWWDC2026: RawSlide[] = [
+  {
+    title: 'Apple Intelligence 2026 Features',
+    product: 'AI',
+  },
+  {
+    title: 'Apple Intelligence 2026',
+    product: 'AI',
+  },
+].map(slide => ({
+  ...slide,
+  event: 'WWDC 2026',
+}));
+
 export const raw: RawSlide[] = [
+  ...fromWWDC2026,
   ...fromAppleEventSeptember2025,
   ...fromWWDC2025,
   ...fromAppleAnnouncementFebruary2025,
