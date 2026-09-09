@@ -1,28 +1,28 @@
 {
   "dependencies": {
-    "@radix-ui/react-tabs": "^1.1.12",
+    "@radix-ui/react-tabs": "^1.1.21",
     "clsx": "^2.1.1",
-    "lucide-react": "^0.482.0",
-    "next": "15.2.8",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "tailwind-merge": "^3.3.0"
+    "lucide-react": "^1.43.0",
+    "next": "16.3.4",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.16",
-    "@eslint/eslintrc": "^3.3.1",
-    "@tailwindcss/postcss": "^4.1.8",
-    "@types/node": "^22.15.30",
-    "@types/react": "^19.1.6",
-    "@types/react-dom": "^19.1.6",
-    "eslint": "^9.28.0",
-    "eslint-config-next": "15.2.2",
-    "postcss": "^8.5.4",
-    "tailwindcss": "^4.1.8",
+    "@biomejs/biome": "2.5.12",
+    "@eslint/eslintrc": "^3.3.7",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^22.20.1",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "eslint": "^10.10.0",
+    "eslint-config-next": "16.3.4",
+    "postcss": "^8.5.28",
+    "tailwindcss": "^4.3.3",
     "tailwindcss-debug-screens": "^3.0.1",
-    "tsx": "^4.19.4",
-    "typescript": "^5.8.3",
-    "ultracite": "7.8.2"
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2",
+    "ultracite": "7.11.0"
   },
   "name": "apple-summary-slides",
   "scripts": {
