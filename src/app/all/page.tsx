@@ -1,5 +1,6 @@
 import { Slide, Tabs } from "@/components";
 import { slides } from "@/data";
+import { SITE_URL } from "@/utils";
 
 export function generateMetadata() {
   return {
@@ -12,7 +13,7 @@ export function generateMetadata() {
         'A collection of all the "bento" summary slides created by Apple',
     },
     alternates: {
-      canonical: "https://apple-summary-slides.vercel.app/all",
+      canonical: `${SITE_URL}/all`,
     },
   };
 }

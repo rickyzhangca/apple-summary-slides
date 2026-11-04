@@ -2,7 +2,8 @@ packages:
   - "."
 
 allowBuilds:
-  '@tailwindcss/oxide': set this to true or false
-  esbuild: set this to true or false
-  sharp: set this to true or false
-  unrs-resolver: set this to true or false
+  '@tailwindcss/oxide': true
+  esbuild: true
+  sharp: false
+  unrs-resolver: true
+  workerd: true

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import type { ReactNode } from "react";
-import { tw } from "@/utils";
+import { SITE_URL, tw } from "@/utils";
 import { Analytics, Footer, Header } from "../components";
 import "./globals.css";
 
@@ -11,7 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://apple-summary-slides.vercel.app"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Apple Summary Slides",
     template: "%s | Apple Summary Slides",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://apple-summary-slides.vercel.app/",
+    url: `${SITE_URL}/`,
     siteName: "Apple Summary Slides",
     title: "Apple Summary Slides",
     description:
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://apple-summary-slides.vercel.app/",
+    canonical: `${SITE_URL}/`,
   },
 };
 

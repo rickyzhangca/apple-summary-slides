@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { Slide, Tabs } from "@/components";
 import { getSlidesByEvent, slides } from "@/data";
-import { decodeUrl, encodeUrl } from "@/utils";
+import { decodeUrl, encodeUrl, SITE_URL } from "@/utils";
 
 export async function generateStaticParams() {
   const events = new Set<string>();
@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: PageProps) {
       description: `A collection of the "bento" summary slides created by Apple for ${originalEvent}`,
     },
     alternates: {
-      canonical: `https://apple-summary-slides.vercel.app/events/${encodeUrl(originalEvent)}`,
+      canonical: `${SITE_URL}/events/${encodeUrl(originalEvent)}`,
     },
   };
 }

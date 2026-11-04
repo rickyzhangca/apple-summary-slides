@@ -22,7 +22,8 @@
     "tailwindcss-debug-screens": "^3.0.1",
     "tsx": "^4.23.13",
     "typescript": "^7.0.2",
-    "ultracite": "7.11.0"
+    "ultracite": "7.11.0",
+    "wrangler": "^4.157.0"
   },
   "name": "apple-summary-slides",
   "scripts": {
@@ -33,8 +34,11 @@
     "slides": "tsx scripts/generate-raw-slides.ts slides",
     "check": "ultracite check",
     "fix": "ultracite fix",
-    "clean": "biome format --write && biome lint --write"
+    "clean": "biome format --write && biome lint --write",
+    "deploy": "next build && wrangler pages deploy",
+    "preview": "next build && wrangler pages dev"
   },
   "version": "0.1.0",
-  "private": true
+  "private": true,
+  "packageManager": "pnpm@12.11.2"
 }

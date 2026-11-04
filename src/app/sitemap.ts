@@ -1,21 +1,20 @@
 import type { MetadataRoute } from "next";
 import { eventsFromSlides, productsFromSlides } from "@/data";
-import { encodeUrl } from "@/utils";
+import { encodeUrl, SITE_URL } from "@/utils";
 
-const BASE_URL = "https://apple-summary-slides.vercel.app";
 
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const eventRoutes = eventsFromSlides.map((event) => ({
-    url: `${BASE_URL}/events/${encodeUrl(event.name)}`,
+    url: `${SITE_URL}/events/${encodeUrl(event.name)}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.9,
   }));
 
   const productRoutes = productsFromSlides.map((product) => ({
-    url: `${BASE_URL}/products/${encodeUrl(product.name)}`,
+    url: `${SITE_URL}/products/${encodeUrl(product.name)}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.6,
@@ -23,7 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     {
-      url: BASE_URL,
+      url: SITE_URL,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 1,

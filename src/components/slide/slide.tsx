@@ -27,7 +27,7 @@ export const Slide = ({ slide, highlight }: SlideProps) => {
           />
         </Link>
       </div>
-      {/* not using next image to save bandwidth on vercel */}
+      {/* not using next image to save bandwidth on the CDN */}
       {/* bunny cdn will handle caching */}
       {/* biome-ignore lint/performance/noImgElement: CDN img avoids Vercel image optimization bandwidth */}
       <img
