@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://apple-summary-slides.rickyzhang.me/$1",
+      "permanent": true
+    }
+  ]
+}
